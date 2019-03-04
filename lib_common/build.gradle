@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    def version = rootProject.ext.versions
+    compileSdkVersion version.compileSdkVersion
+    buildToolsVersion version.buildToolsVersion
+    defaultConfig {
+        minSdkVersion version.minSdkVersion
+        targetSdkVersion version.targetSdkVersion
+        versionCode version.versionCode
+        versionName version.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.deps
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.aar'])
+    // Support libraries
+    api dependencies.suport.support
+    api dependencies.suport.recyclerview
+    api dependencies.suport.appcompat
+    api dependencies.suport.design
+    //retrofit2
+    api dependencies.retrofit2.retrofit
+    api dependencies.retrofit2.adapter_rxjava2
+    api dependencies.retrofit2.converter_gson
+    //rxjava2
+    api dependencies.rxjava2.rxjava
+    api dependencies.rxjava2.rxandroid
+    //okhttp3
+    api dependencies.okhttp3
+    //工具类
+    api dependencies.utilcode
+    //今日头条屏幕适配方案
+    api dependencies.autosize
+    //ProgressManager进度监听
+    api dependencies.progressmanager
+    //eventbus
+    api dependencies.eventbus
+    //litepal数据库
+    api dependencies.litepal
+    //glide图片加载
+    api dependencies.glide.glide
+    annotationProcessor dependencies.glide.compiler
+    //图片处理库
+    api dependencies.glide.transformations
+    //分Dex
+    api dependencies.multidex
+    //butterknife
+    implementation dependencies.butterknife.butterknife
+    annotationProcessor dependencies.butterknife.compiler
+    //权限管理库
+    api dependencies.rxpermissions
+    //沉浸式状态栏
+    api dependencies.immersionbar
+    //bugly升级库
+    api dependencies.bugly.crashreport_upgrade
+    // bugly 热更新tinker插件库
+    api dependencies.bugly.tinker
+    //rxlifecycle生命周期绑定
+    api dependencies.rxlifecycle
+    //ARouter 路由
+    api dependencies.arouter.arouter_api
+}

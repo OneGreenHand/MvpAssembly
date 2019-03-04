@@ -1,0 +1,121 @@
+apply plugin: 'com.android.application'
+apply from: 'tinker-support.gradle'
+def keystorePropertiesFile = rootProject.file("keystore.properties")//打包文件配置
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+def releaseTime() {//设置打包时间
+    return new Date().format("MMddhh", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    def version = rootProject.ext.versions
+    compileSdkVersion version.compileSdkVersion
+    buildToolsVersion version.buildToolsVersion
+    defaultConfig {
+        applicationId version.applicationId
+        minSdkVersion version.minSdkVersion
+        targetSdkVersion version.targetSdkVersion
+        versionCode version.versionCode
+        versionName version.versionName
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "armeabi", "x86_64", "mips", 'mips64'
+        }
+        //解决AndroidStudio 3.0的问题
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+        //版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
+    }
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    productFlavors {//渠道名字
+        develop {}
+        tencent {}
+        xiaomi {}
+        huawei {}
+        meizu {}
+    }
+    android.applicationVariants.all { variant ->//修改打包后的名字
+        variant.outputs.all {
+        //    outputFileName = "apk_" + productFlavors[0].name + "_v" + defaultConfig.versionName + "-${releaseTime()}.apk"
+            outputFileName = "apk_" + productFlavors[0].name + "_" + buildType.name + "_v" + defaultConfig.versionName + "-${releaseTime()}.apk"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            debuggable true//是否允许调试
+            minifyEnabled true//是否开启代码混淆
+            zipAlignEnabled true//是否优化apk文件，将apk文件中未压缩的数据在4个字节边界上对齐
+            shrinkResources true//是否去除无用资源，任何在编译过程中没有用到的资源或者代码都会被删除，可以有效减小apk体积
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        //  true--所有正式版构建执行规则生成崩溃的lint检查，如果有崩溃问题将停止构建
+        checkReleaseBuilds false
+        // true--错误发生后停止gradle构建
+        abortOnError false
+        // 关闭指定问题检查
+        disable 'MissingTranslation'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+    allprojects {
+        repositories {
+            jcenter()
+            flatDir {
+                dirs 'libs'
+            }
+        }
+    }
+    dexOptions {//解决编译内存溢出问题
+        dexInProcess true
+        preDexLibraries true
+        javaMaxHeapSize "8g"//越大越好
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation project(':lib_common')
+    if (!isModule.toBoolean()) {
+        implementation project(':module_main')
+        implementation project(':module_home')
+        implementation project(':module_game')
+        implementation project(':module_online')
+        implementation project(':module_mine')
+    }
+}

@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ogh.module.mine" >
+
+    <application android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.activity.MineActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.HeadFootExampleActivity" />
+        <activity android:name=".view.activity.RefreshRequestActivity" />
+        <activity android:name=".view.activity.NoDataExampleActivity" />
+    </application>
+</manifest>
