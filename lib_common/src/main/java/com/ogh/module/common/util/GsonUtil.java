@@ -29,7 +29,8 @@ public class GsonUtil {
                 .registerTypeAdapter(String.class, STRING)
                 .registerTypeAdapter(Integer.class, INTEGER)
                 .registerTypeAdapter(Double.class, DOUBLE)
-                .registerTypeAdapter(Long.class, LONG);
+                .registerTypeAdapter(Long.class, LONG)
+                .registerTypeAdapter(Float.class, FLOAT);
         gsonBulder.serializeNulls();
         return gsonBulder.create();
     }
@@ -268,6 +269,34 @@ public class GsonUtil {
             }
         }
     };
+    /**
+     * 自定义TypeAdapter ,null对象将被解析成0f
+     */
+    private static final TypeAdapter<Float> FLOAT = new TypeAdapter<Float>() {
+        public Float read(JsonReader reader) {
+            try {
+                if (reader.peek() == JsonToken.NULL) {
+                    reader.nextNull();
+                    return 0f; // 原先是返回null，这里改为返回0
+                }
+                return (float) reader.nextDouble();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 0f;
+        }
 
+        public void write(JsonWriter writer, Float value) {
+            try {
+                if (value == null) {
+                    writer.value(0f);
+                    return;
+                }
+                writer.value(value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
 }
