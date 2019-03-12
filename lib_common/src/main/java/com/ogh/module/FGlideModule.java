@@ -9,21 +9,21 @@ import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 
-@GlideModule
-public  final class FGlideModule extends AppGlideModule {
-    @Override
-    public boolean isManifestParsingEnabled() {
-        //return super.isManifestParsingEnabled();
-        return false;
-    }
-
-    @Override
-    public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
-        super.applyOptions(context, builder);
-    }
-    @Override
-    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
-        super.registerComponents(context, glide, registry);
-    }
-}
+//@GlideModule
+//public  final class FGlideModule extends AppGlideModule {//Generated API 目前仅可以在 Application 模块内使用,后续版本可能会支持
+//    @Override
+//    public boolean isManifestParsingEnabled() {
+//        //return super.isManifestParsingEnabled();
+//        return false;
+//    }
+//
+//    @Override
+//    public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
+//        super.applyOptions(context, builder);
+//    }
+//    @Override
+//    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
+//        super.registerComponents(context, glide, registry);
+//    }
+//}
 
