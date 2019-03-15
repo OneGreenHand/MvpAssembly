@@ -91,6 +91,8 @@ ext {
             immersionbar   : "com.gyf.immersionbar:immersionbar:${depVersion.immersionbar}",
             //retrofit绑定生命周期
             rxlifecycle    : "com.trello.rxlifecycle2:rxlifecycle-components:${depVersion.rxlifecycle}",
+            //微信支付
+            wxpay          : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
 
             eventbus       : "org.greenrobot:eventbus:${depVersion.eventbus}",
             okhttp3        : "com.squareup.okhttp3:logging-interceptor:${depVersion.okhttp3}",
