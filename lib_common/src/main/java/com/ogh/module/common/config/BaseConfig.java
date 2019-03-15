@@ -18,4 +18,6 @@ public class BaseConfig {
     public static final String FILE_FOLDER = SDCARD_PATH + File.separator + "MvpAssembly" + File.separator + "files" + File.separator;    //客户端文件路径
     //SharedPreferences,统一以sp_开头命名
     public static final String SP_NAME = "SP_MvpAssembly"; //客户端sp名字
+    //微信支付AppId
+    public  static  final String  WEIXIN_APP_ID="wx87c75a5bc154737c";
 }

@@ -46,7 +46,8 @@ android {
 
 dependencies {
     def dependencies = rootProject.ext.deps
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     annotationProcessor dependencies.arouter.arouter_compiler
     //butterknife
     implementation dependencies.butterknife.butterknife

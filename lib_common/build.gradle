@@ -36,8 +36,8 @@ android {
 
 dependencies {
     def dependencies = rootProject.ext.deps
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api fileTree(dir: 'libs', include: ['*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     // Support libraries
     api dependencies.suport.support
     api dependencies.suport.recyclerview
@@ -84,4 +84,8 @@ dependencies {
     api dependencies.rxlifecycle
     //ARouter 路由
     api dependencies.arouter.arouter_api
+    //微信支付
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    // 支付宝支付
+    api files('libs/alipaySdk-20180601.jar')
 }

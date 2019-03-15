@@ -92,14 +92,6 @@ android {
             jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
-    allprojects {
-        repositories {
-            jcenter()
-            flatDir {
-                dirs 'libs'
-            }
-        }
-    }
     dexOptions {//解决编译内存溢出问题
         dexInProcess true
         preDexLibraries true
