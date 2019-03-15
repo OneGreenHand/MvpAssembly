@@ -49,8 +49,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     annotationProcessor dependencies.arouter.arouter_compiler
-    //butterknife
-    implementation dependencies.butterknife.butterknife
     annotationProcessor dependencies.butterknife.compiler
     implementation project(':lib_common')
 }

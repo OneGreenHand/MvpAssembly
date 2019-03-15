@@ -70,7 +70,7 @@ dependencies {
     //分Dex
     api dependencies.multidex
     //butterknife
-    implementation dependencies.butterknife.butterknife
+    api dependencies.butterknife.butterknife
     annotationProcessor dependencies.butterknife.compiler
     //权限管理库
     api dependencies.rxpermissions
