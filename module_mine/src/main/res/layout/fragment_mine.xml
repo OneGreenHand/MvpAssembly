@@ -8,32 +8,32 @@
         android:id="@+id/example_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
+        android:background="@color/frame_green"
         android:gravity="center"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="示例一：空布局显示"
-        android:textColor="@color/white" />
+        android:textColor="@color/frame_white" />
 
     <TextView
         android:id="@+id/example_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/yellows"
+        android:background="@color/frame_yellows"
         android:gravity="center"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="示例一：添加头部和底部"
-        android:textColor="@color/white" />
+        android:textColor="@color/frame_white" />
 
     <TextView
         android:id="@+id/example_three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/violet"
+        android:background="@color/frame_violet"
         android:gravity="center"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="示例一：下拉刷新和上拉加载"
-        android:textColor="@color/white" />
+        android:textColor="@color/frame_white" />
 </LinearLayout>

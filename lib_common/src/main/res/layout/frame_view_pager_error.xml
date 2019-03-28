@@ -18,7 +18,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/frame_view_net_error"
         android:textSize="14sp"
-        android:textColor="@color/bg_999999"
+        android:textColor="@color/frame_bg_999999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

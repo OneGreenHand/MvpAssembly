@@ -8,12 +8,12 @@
         android:id="@+id/post_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/frame_blue"
         android:gravity="center"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="获取深圳城市天气"
-        android:textColor="@color/white" />
+        android:textColor="@color/frame_white" />
 
 
     <TextView
