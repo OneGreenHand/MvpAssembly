@@ -23,10 +23,4 @@ public class GameFragment extends BaseFragment {
     protected int getLayoutID() {
         return R.layout.activity_game;
     }
-
-
-    @Override
-    public void initImmersionBar() {
-
-    }
 }

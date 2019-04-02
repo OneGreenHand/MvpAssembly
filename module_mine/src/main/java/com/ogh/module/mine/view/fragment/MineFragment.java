@@ -44,8 +44,4 @@ public class MineFragment extends BaseFragment {
             IntentUtil.goActivity(mActivity, RefreshRequestActivity.class, null, false, true);
         }
     }
-    @Override
-    public void initImmersionBar() {
-
-    }
 }

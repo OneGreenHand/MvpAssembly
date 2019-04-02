@@ -261,11 +261,19 @@ public abstract class BaseFragment extends RxFragment implements BaseView, Immer
     }
 
     /**
+     * 初始化沉浸式代码
+     */
+    @Override
+    public void initImmersionBar() {
+
+    }
+
+    /**
      * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
      */
     @Override
     public boolean immersionBarEnabled() {
-        return true;
+        return false;
     }
 
 }

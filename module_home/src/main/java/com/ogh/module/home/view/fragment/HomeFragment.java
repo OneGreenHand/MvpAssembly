@@ -23,10 +23,4 @@ public class HomeFragment extends BaseFragment {
     protected int getLayoutID() {
         return R.layout.activity_home;
     }
-
-
-    @Override
-    public void initImmersionBar() {
-
-    }
 }
